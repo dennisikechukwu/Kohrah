@@ -5,7 +5,7 @@
       <div class="absolute left-[12%] top-56 size-44 rounded-full bg-brand-coral/5 blur-3xl" />
     </div>
 
-    <div id="why-kohrah" class="mx-auto max-w-5xl scroll-mt-32 text-center">
+    <div id="why-kohrah" class="mx-auto max-w-5xl scroll-mt-32 animate-hero-enter text-center motion-reduce:animate-none">
       <p class="flex items-center justify-center gap-2.5 text-xs font-bold uppercase tracking-[0.16em] text-brand-muted sm:text-sm">
         <span class="size-1.5 rounded-full bg-brand-coral" />
         For connections worth keeping
@@ -51,7 +51,7 @@
       </div>
     </div>
 
-    <div class="mx-auto mt-10 max-w-6xl sm:mt-14">
+    <div class="mx-auto mt-10 max-w-6xl animate-product-enter sm:mt-14 motion-reduce:animate-none">
       <LandingHeroProductPreview />
     </div>
   </section>

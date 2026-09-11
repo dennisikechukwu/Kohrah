@@ -24,7 +24,7 @@ async function closeMenuWithKeyboard() {
 
 <template>
   <header
-    class="sticky inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4"
+    class="sticky inset-x-0 top-0 z-50 animate-nav-enter px-3 pt-3 sm:px-5 sm:pt-4 motion-reduce:animate-none"
     @keydown.esc="closeMenuWithKeyboard"
   >
     <div
