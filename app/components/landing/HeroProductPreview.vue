@@ -5,7 +5,7 @@
     aria-labelledby="product-preview-caption"
   >
     <div aria-hidden="true">
-      <div class="absolute inset-x-8 top-16 h-[27rem] rounded-full bg-brand-soft/80 blur-3xl sm:inset-x-14" />
+      <div class="absolute inset-x-8 top-16 h-[27rem] rounded-full bg-brand-primary-soft/80 blur-3xl sm:inset-x-14" />
       <div class="absolute right-4 top-24 size-40 rounded-full bg-brand-coral/10 blur-3xl" />
 
       <div class="relative z-20 mx-auto w-full max-w-[26rem]">

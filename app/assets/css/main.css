@@ -8,10 +8,10 @@
   --color-brand-surface: #ffffff;
   --color-brand-ink: #16171b;
   --color-brand-muted: #6f7178;
-  --color-brand-violet: #6757e5;
-  --color-brand-violet-dark: #5545d3;
+  --color-brand-primary: #2457d6;
+  --color-brand-primary-dark: #1948be;
   --color-brand-coral: #ff715b;
-  --color-brand-soft: #eeeafe;
+  --color-brand-primary-soft: #eaf0ff;
   --color-brand-border: #e8e7e3;
   --color-brand-success: #168c61;
 
@@ -36,7 +36,7 @@
   }
 
   ::selection {
-    background: var(--color-brand-soft);
+    background: var(--color-brand-primary-soft);
     color: var(--color-brand-ink);
   }
 

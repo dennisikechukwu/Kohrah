@@ -37,7 +37,7 @@ async function closeMenuWithKeyboard() {
           v-for="item in navigationItems"
           :key="item.href"
           :href="item.href"
-          class="rounded-lg px-4 py-2 text-sm font-semibold text-brand-muted outline-none transition-colors hover:bg-brand-canvas hover:text-brand-ink focus-visible:ring-2 focus-visible:ring-brand-violet motion-reduce:transition-none"
+          class="rounded-lg px-4 py-2 text-sm font-semibold text-brand-muted outline-none transition-colors hover:bg-brand-canvas hover:text-brand-ink focus-visible:ring-2 focus-visible:ring-brand-primary motion-reduce:transition-none"
         >
           {{ item.label }}
         </a>
@@ -46,7 +46,7 @@ async function closeMenuWithKeyboard() {
       <div class="hidden items-center md:flex">
         <a
           href="#product-preview"
-          class="group inline-flex items-center justify-center gap-2 rounded-xl bg-brand-ink px-4 py-2.5 text-sm font-semibold text-white outline-none transition hover:-translate-y-0.5 hover:bg-brand-violet focus-visible:ring-2 focus-visible:ring-brand-violet focus-visible:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none"
+          class="group inline-flex items-center justify-center gap-2 rounded-xl bg-brand-ink px-4 py-2.5 text-sm font-semibold text-white outline-none transition hover:-translate-y-0.5 hover:bg-brand-primary focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none"
         >
           View product
           <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" class="size-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none motion-reduce:transition-none">
@@ -58,7 +58,7 @@ async function closeMenuWithKeyboard() {
       <button
         ref="menu-button"
         type="button"
-        class="inline-flex size-10 items-center justify-center rounded-xl border border-brand-border bg-brand-surface text-brand-ink outline-none transition-colors hover:bg-brand-canvas focus-visible:ring-2 focus-visible:ring-brand-violet md:hidden motion-reduce:transition-none"
+        class="inline-flex size-10 items-center justify-center rounded-xl border border-brand-border bg-brand-surface text-brand-ink outline-none transition-colors hover:bg-brand-canvas focus-visible:ring-2 focus-visible:ring-brand-primary md:hidden motion-reduce:transition-none"
         :aria-expanded="isMenuOpen"
         aria-controls="mobile-navigation"
         :aria-label="isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'"
@@ -72,29 +72,38 @@ async function closeMenuWithKeyboard() {
         </svg>
       </button>
 
-      <nav
-        v-show="isMenuOpen"
-        id="mobile-navigation"
-        class="absolute inset-x-0 top-[calc(100%+0.5rem)] rounded-2xl border border-brand-border bg-brand-surface p-2 shadow-nav md:hidden"
-        aria-label="Mobile navigation"
+      <Transition
+        enter-active-class="transition duration-150 ease-out motion-reduce:transition-none"
+        enter-from-class="-translate-y-2 opacity-0"
+        enter-to-class="translate-y-0 opacity-100"
+        leave-active-class="transition duration-100 ease-in motion-reduce:transition-none"
+        leave-from-class="translate-y-0 opacity-100"
+        leave-to-class="-translate-y-2 opacity-0"
       >
-        <a
-          v-for="item in navigationItems"
-          :key="item.href"
-          :href="item.href"
-          class="block rounded-xl px-4 py-3 text-sm font-semibold text-brand-muted outline-none transition-colors hover:bg-brand-canvas hover:text-brand-ink focus-visible:ring-2 focus-visible:ring-brand-violet motion-reduce:transition-none"
-          @click="closeMenu"
+        <nav
+          v-if="isMenuOpen"
+          id="mobile-navigation"
+          class="absolute inset-x-0 top-[calc(100%+0.5rem)] rounded-2xl border border-brand-border bg-brand-surface p-2 shadow-nav md:hidden"
+          aria-label="Mobile navigation"
         >
-          {{ item.label }}
-        </a>
-        <a
-          href="#product-preview"
-          class="mt-1 flex items-center justify-center rounded-xl bg-brand-ink px-4 py-3 text-sm font-semibold text-white outline-none transition-colors hover:bg-brand-violet focus-visible:ring-2 focus-visible:ring-brand-violet focus-visible:ring-offset-2 motion-reduce:transition-none"
-          @click="closeMenu"
-        >
-          View product
-        </a>
-      </nav>
+          <a
+            v-for="item in navigationItems"
+            :key="item.href"
+            :href="item.href"
+            class="block rounded-xl px-4 py-3 text-sm font-semibold text-brand-muted outline-none transition-colors hover:bg-brand-canvas hover:text-brand-ink focus-visible:ring-2 focus-visible:ring-brand-primary motion-reduce:transition-none"
+            @click="closeMenu"
+          >
+            {{ item.label }}
+          </a>
+          <a
+            href="#product-preview"
+            class="mt-1 flex items-center justify-center rounded-xl bg-brand-ink px-4 py-3 text-sm font-semibold text-white outline-none transition-colors hover:bg-brand-primary focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 motion-reduce:transition-none"
+            @click="closeMenu"
+          >
+            View product
+          </a>
+        </nav>
+      </Transition>
     </div>
   </header>
 </template>
