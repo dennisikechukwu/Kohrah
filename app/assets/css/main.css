@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Avenir Next", "Segoe UI", sans-serif;
+
+  --color-brand-canvas: #faf9f7;
+  --color-brand-surface: #ffffff;
+  --color-brand-ink: #16171b;
+  --color-brand-muted: #6f7178;
+  --color-brand-violet: #6757e5;
+  --color-brand-violet-dark: #5545d3;
+  --color-brand-coral: #ff715b;
+  --color-brand-soft: #eeeafe;
+  --color-brand-border: #e8e7e3;
+  --color-brand-success: #168c61;
+
+  --shadow-nav: 0 14px 38px rgba(38, 32, 75, 0.08);
+  --shadow-product: 0 34px 90px rgba(60, 50, 105, 0.15);
+  --shadow-card: 0 16px 36px rgba(41, 36, 71, 0.08);
+}
+
+@layer base {
+  html {
+    background: var(--color-brand-canvas);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-width: 320px;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  ::selection {
+    background: var(--color-brand-soft);
+    color: var(--color-brand-ink);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
