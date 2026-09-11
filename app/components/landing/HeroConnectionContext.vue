@@ -1,33 +1,40 @@
 <template>
-  <div class="rounded-2xl border border-brand-border bg-brand-surface p-5 shadow-card sm:p-6">
-    <div class="flex items-start justify-between gap-4">
-      <div>
-        <p class="text-xs font-semibold uppercase tracking-[0.16em] text-brand-violet">After the hello</p>
-        <h3 class="mt-2 text-lg font-bold tracking-tight text-brand-ink">Keep the context</h3>
-      </div>
-      <span class="grid size-9 shrink-0 place-items-center rounded-xl bg-brand-soft text-brand-violet">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" class="size-4">
-          <path d="M8 4.5v3M16 4.5v3M5.5 9.5h13M6.5 6h11A1.5 1.5 0 0 1 19 7.5v11a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 18.5v-11A1.5 1.5 0 0 1 6.5 6Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
-        </svg>
-      </span>
+  <div class="w-full border border-brand-ink bg-brand-surface shadow-card">
+    <div class="flex items-center justify-between border-b border-brand-border px-4 py-3">
+      <span class="text-[0.65rem] font-bold uppercase tracking-[0.16em] text-brand-muted">Saved connection</span>
+      <span class="text-[0.65rem] font-bold text-brand-muted">Just now</span>
     </div>
 
-    <dl class="mt-5 space-y-3">
-      <div class="rounded-xl bg-brand-canvas px-4 py-3">
-        <dt class="text-xs font-medium text-brand-muted">Where you met</dt>
-        <dd class="mt-1 text-sm font-semibold text-brand-ink">Add an event or place</dd>
+    <div class="p-5">
+      <div class="flex items-center gap-3">
+        <div class="grid size-11 place-items-center rounded-full bg-brand-soft text-sm font-extrabold text-brand-violet">MC</div>
+        <div>
+          <p class="text-base font-bold text-brand-ink">Maya Chen</p>
+          <p class="text-xs text-brand-muted">Independent product consultant</p>
+        </div>
       </div>
-      <div class="rounded-xl bg-brand-canvas px-4 py-3">
-        <dt class="text-xs font-medium text-brand-muted">What mattered</dt>
-        <dd class="mt-1 text-sm font-semibold text-brand-ink">Capture a quick note</dd>
-      </div>
-      <div class="rounded-xl bg-brand-canvas px-4 py-3">
-        <dt class="text-xs font-medium text-brand-muted">What comes next</dt>
-        <dd class="mt-1 flex items-center gap-2 text-sm font-semibold text-brand-ink">
-          <span class="size-1.5 rounded-full bg-brand-coral" />
-          Follow up when it matters
-        </dd>
-      </div>
-    </dl>
+
+      <dl class="mt-6 space-y-5">
+        <div class="grid grid-cols-[4.75rem_1fr] gap-3 border-t border-brand-border pt-4">
+          <dt class="text-[0.65rem] font-bold uppercase tracking-wide text-brand-muted">Met at</dt>
+          <dd class="text-xs font-semibold leading-5 text-brand-ink">Product Assembly</dd>
+        </div>
+        <div class="grid grid-cols-[4.75rem_1fr] gap-3 border-t border-brand-border pt-4">
+          <dt class="text-[0.65rem] font-bold uppercase tracking-wide text-brand-muted">Context</dt>
+          <dd class="text-xs font-semibold leading-5 text-brand-ink">A partnership worth exploring</dd>
+        </div>
+        <div class="grid grid-cols-[4.75rem_1fr] gap-3 border-t border-brand-border pt-4">
+          <dt class="text-[0.65rem] font-bold uppercase tracking-wide text-brand-muted">Next step</dt>
+          <dd class="flex items-center gap-2 text-xs font-semibold leading-5 text-brand-ink">
+            <span class="size-1.5 rounded-full bg-brand-coral" />
+            Follow up Friday
+          </dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="border-t border-brand-border bg-brand-canvas px-4 py-3 text-center text-[0.65rem] font-bold text-brand-muted">
+      Context stays attached to the person
+    </div>
   </div>
 </template>

@@ -4,7 +4,7 @@ const menuButton = useTemplateRef<HTMLButtonElement>('menu-button')
 
 const navigationItems = [
   { label: 'Why Kohrah', href: '#why-kohrah' },
-  { label: 'The experience', href: '#profile-preview' },
+  { label: 'Product flow', href: '#product-flow' },
 ] as const
 
 function closeMenu() {
@@ -23,18 +23,21 @@ async function closeMenuWithKeyboard() {
 </script>
 
 <template>
-  <header class="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-5" @keydown.esc="closeMenuWithKeyboard">
+  <header
+    class="sticky inset-x-0 top-0 z-50 border-b border-brand-border bg-brand-canvas/95 backdrop-blur-md"
+    @keydown.esc="closeMenuWithKeyboard"
+  >
     <div
-      class="relative mx-auto flex max-w-6xl items-center justify-between rounded-2xl border border-brand-border/90 bg-brand-canvas/90 px-4 py-3 shadow-nav backdrop-blur-xl sm:px-5"
+      class="relative mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
     >
       <BrandKohrahWordmark />
 
-      <nav class="hidden items-center gap-1 md:flex" aria-label="Primary navigation">
+      <nav class="hidden items-center gap-8 md:flex" aria-label="Primary navigation">
         <a
           v-for="item in navigationItems"
           :key="item.href"
           :href="item.href"
-          class="rounded-lg px-4 py-2 text-sm font-medium text-brand-muted outline-none transition-colors hover:bg-brand-surface hover:text-brand-ink focus-visible:ring-2 focus-visible:ring-brand-violet motion-reduce:transition-none"
+          class="border-b border-transparent py-1 text-sm font-semibold text-brand-muted outline-none transition-colors hover:border-brand-ink hover:text-brand-ink focus-visible:ring-2 focus-visible:ring-brand-violet focus-visible:ring-offset-4 focus-visible:ring-offset-brand-canvas motion-reduce:transition-none"
         >
           {{ item.label }}
         </a>
@@ -42,17 +45,20 @@ async function closeMenuWithKeyboard() {
 
       <div class="hidden items-center md:flex">
         <a
-          href="#profile-preview"
-          class="inline-flex items-center justify-center rounded-xl bg-brand-ink px-4 py-2.5 text-sm font-semibold text-white shadow-sm outline-none transition hover:-translate-y-0.5 hover:bg-brand-violet focus-visible:ring-2 focus-visible:ring-brand-violet focus-visible:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none"
+          href="#product-flow"
+          class="group inline-flex items-center justify-center gap-2 border border-brand-ink bg-brand-ink px-4 py-2.5 text-sm font-semibold text-white outline-none transition-colors hover:bg-brand-violet focus-visible:ring-2 focus-visible:ring-brand-violet focus-visible:ring-offset-4 focus-visible:ring-offset-brand-canvas motion-reduce:transition-none"
         >
-          See the experience
+          View product
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" class="size-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none motion-reduce:transition-none">
+            <path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
         </a>
       </div>
 
       <button
         ref="menu-button"
         type="button"
-        class="inline-flex size-10 items-center justify-center rounded-xl border border-brand-border bg-brand-surface text-brand-ink outline-none transition-colors hover:bg-brand-soft focus-visible:ring-2 focus-visible:ring-brand-violet md:hidden motion-reduce:transition-none"
+        class="inline-flex size-10 items-center justify-center border border-brand-border bg-brand-surface text-brand-ink outline-none transition-colors hover:border-brand-ink focus-visible:ring-2 focus-visible:ring-brand-violet md:hidden motion-reduce:transition-none"
         :aria-expanded="isMenuOpen"
         aria-controls="mobile-navigation"
         :aria-label="isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'"
@@ -69,24 +75,24 @@ async function closeMenuWithKeyboard() {
       <nav
         v-show="isMenuOpen"
         id="mobile-navigation"
-        class="absolute inset-x-0 top-[calc(100%+0.5rem)] rounded-2xl border border-brand-border bg-brand-surface p-2 shadow-nav md:hidden"
+        class="absolute inset-x-0 top-full border-y border-brand-border bg-brand-surface p-4 shadow-card md:hidden"
         aria-label="Mobile navigation"
       >
         <a
           v-for="item in navigationItems"
           :key="item.href"
           :href="item.href"
-          class="block rounded-xl px-4 py-3 text-sm font-medium text-brand-muted outline-none transition-colors hover:bg-brand-canvas hover:text-brand-ink focus-visible:ring-2 focus-visible:ring-brand-violet motion-reduce:transition-none"
+          class="block border-b border-brand-border px-1 py-4 text-sm font-semibold text-brand-muted outline-none transition-colors hover:text-brand-ink focus-visible:ring-2 focus-visible:ring-brand-violet motion-reduce:transition-none"
           @click="closeMenu"
         >
           {{ item.label }}
         </a>
         <a
-          href="#profile-preview"
-          class="mt-1 flex items-center justify-center rounded-xl bg-brand-ink px-4 py-3 text-sm font-semibold text-white outline-none transition-colors hover:bg-brand-violet focus-visible:ring-2 focus-visible:ring-brand-violet focus-visible:ring-offset-2 motion-reduce:transition-none"
+          href="#product-flow"
+          class="mt-4 flex items-center justify-center bg-brand-ink px-4 py-3 text-sm font-semibold text-white outline-none transition-colors hover:bg-brand-violet focus-visible:ring-2 focus-visible:ring-brand-violet focus-visible:ring-offset-2 motion-reduce:transition-none"
           @click="closeMenu"
         >
-          See the experience
+          View product
         </a>
       </nav>
     </div>
