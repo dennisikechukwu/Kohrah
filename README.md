@@ -4,6 +4,10 @@ Kohrah is a professional networking and relationship-continuity platform.
 
 **Brand promise:** Share who you are. Remember who you meet.
 
+## Start here in a new session
+
+Read the complete [project context](docs/PROJECT_CONTEXT.md), then use the [ready-to-paste new-session prompt](docs/NEW_SESSION_PROMPT.md). Repository-specific agent rules are in [AGENTS.md](AGENTS.md).
+
 ## Current product boundary
 
 Stage 1 contains only the responsive marketing navigation and landing-page hero. The profile, sharing, and relationship-context surfaces inside the hero are illustrative product previews; they do not implement authentication, QR generation, contact exchange, or dashboard behavior.
