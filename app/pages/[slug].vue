@@ -81,13 +81,15 @@ const copyToClipboard = async () => {
       document.body.appendChild(textArea)
       textArea.focus()
       textArea.select()
-      try { document.execCommand('copy') } catch (err) {}
+      try { document.execCommand('copy') } catch (_err) { /* ignore fallback error */ }
       textArea.remove()
     }
     
     isCopied.value = true
     setTimeout(() => { isCopied.value = false }, 2000)
-  } catch (err) {}
+  } catch (_err) {
+    /* ignore clipboard API error */
+  }
 }
 
 const downloadVCard = () => {
@@ -168,7 +170,7 @@ END:VCARD`
           <h1 class="text-2xl font-bold tracking-tight text-brand-ink">{{ profile.full_name }}</h1>
           <p class="mt-1 text-sm font-semibold text-brand-primary">
             {{ profile.job_title }} 
-            <span class="text-brand-muted" v-if="profile.company">at <span class="font-medium">{{ profile.company }}</span></span>
+            <span v-if="profile.company" class="text-brand-muted">at <span class="font-medium">{{ profile.company }}</span></span>
           </p>
           <p class="mt-5 text-sm leading-6 text-brand-muted">{{ profile.bio }}</p>
         </div>
@@ -196,7 +198,7 @@ END:VCARD`
         </div>
 
         <!-- Spacer to push branding to bottom -->
-        <div class="flex-1"></div>
+        <div class="flex-1"/>
         
         <div class="mt-12 text-center pb-4 sm:pb-0">
           <BrandKohrahWordmark to="/" class="mx-auto text-brand-ink/30" />

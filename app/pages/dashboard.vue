@@ -20,7 +20,7 @@ const isCopied = ref(false)
 
 onMounted(async () => {
   if (user.value?.sub) {
-    const { data, error } = await supabase
+    const { data } = await supabase
       .from('profiles')
       .select('*')
       .eq('id', user.value.sub)
@@ -69,8 +69,8 @@ const copyLink = async () => {
         />
         
         <button 
-          @click="isSignOutModalOpen = true"
           class="flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-semibold text-brand-muted transition-colors hover:bg-brand-canvas hover:text-brand-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"
+          @click="isSignOutModalOpen = true"
         >
           <HugeiconsIcon :icon="Logout01Icon" class="size-4.5" />
           <span class="hidden sm:inline">Sign out</span>
@@ -111,14 +111,14 @@ const copyLink = async () => {
                   
                   <div class="flex items-center gap-5">
                     <div class="flex size-16 shrink-0 items-center justify-center rounded-2xl bg-brand-primary-soft/50 border border-brand-primary/10 text-2xl font-black text-brand-primary shadow-sm overflow-hidden">
-                      <img v-if="profile.avatar_url" :src="profile.avatar_url" class="h-full w-full object-cover" alt="Avatar" />
+                      <img v-if="profile.avatar_url" :src="profile.avatar_url" class="h-full w-full object-cover" alt="Avatar" >
                       <span v-else>{{ profile.full_name?.charAt(0).toUpperCase() }}</span>
                     </div>
                     <div>
                       <h2 class="text-xl font-bold tracking-tight text-brand-ink">{{ profile.full_name }}</h2>
                       <p class="mt-0.5 text-sm font-medium text-brand-primary">
                         {{ profile.job_title }} 
-                        <span class="text-brand-muted font-normal" v-if="profile.company">at <span class="font-medium">{{ profile.company }}</span></span>
+                        <span v-if="profile.company" class="text-brand-muted font-normal">at <span class="font-medium">{{ profile.company }}</span></span>
                       </p>
                     </div>
                   </div>
@@ -145,12 +145,12 @@ const copyLink = async () => {
                         readonly 
                         :value="`${requestUrl.host}/${profile.slug}`"
                         class="w-full bg-transparent px-3.5 py-2.5 text-sm font-semibold text-brand-ink focus:outline-none"
-                      />
+                      >
                     </div>
                     
                     <button 
-                      @click="copyLink"
                       class="relative flex shrink-0 items-center justify-center gap-2 rounded-xl bg-brand-ink px-4 py-2.5 text-sm font-bold text-white shadow-card transition-all hover:-translate-y-0.5 hover:bg-brand-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary disabled:pointer-events-none"
+                      @click="copyLink"
                     >
                       <Transition
                         mode="out-in"
@@ -197,7 +197,7 @@ const copyLink = async () => {
         leave-from-class="opacity-100"
         leave-to-class="opacity-0"
       >
-        <div v-if="isSignOutModalOpen" @click.self="isSignOutModalOpen = false" class="fixed inset-0 z-50 flex items-center justify-center bg-brand-ink/40 px-4 backdrop-blur-sm">
+        <div v-if="isSignOutModalOpen" class="fixed inset-0 z-50 flex items-center justify-center bg-brand-ink/40 px-4 backdrop-blur-sm" @click.self="isSignOutModalOpen = false">
           <div 
             class="relative w-full max-w-sm scale-100 overflow-hidden rounded-3xl bg-white p-6 text-left shadow-2xl transition-all"
           >
@@ -212,14 +212,14 @@ const copyLink = async () => {
             </div>
             <div class="mt-8 flex gap-3 sm:flex-row-reverse">
               <button 
-                @click="handleSignOut"
                 class="flex w-full items-center justify-center rounded-xl bg-brand-ink px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-brand-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2"
+                @click="handleSignOut"
               >
                 Sign out
               </button>
               <button 
-                @click="isSignOutModalOpen = false"
                 class="flex w-full items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-bold text-brand-ink shadow-sm ring-1 ring-inset ring-brand-border transition hover:bg-brand-canvas focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2"
+                @click="isSignOutModalOpen = false"
               >
                 Cancel
               </button>

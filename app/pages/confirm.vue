@@ -2,10 +2,10 @@
 import { useSupabaseUser, useRouter, watch } from '#imports'
 import { onMounted } from 'vue'
 
+import type { Database } from '~/types/database.types'
+
 const user = useSupabaseUser()
 const router = useRouter()
-
-import type { Database } from '~/types/database.types'
 
 // 1. This page acts as the callback handler for Supabase Magic Links.
 // When the user clicks the link in their email, they land here.

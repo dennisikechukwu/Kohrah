@@ -2,7 +2,7 @@
 definePageMeta({
   layout: 'marketing',
   middleware: [
-    function (to, from) {
+    function (_to, _from) {
       const user = useSupabaseUser()
       if (user.value) {
         return navigateTo('/dashboard')

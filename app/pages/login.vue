@@ -6,7 +6,7 @@ definePageMeta({
   // Disable the default layout (SiteHeader/SiteFooter) for a focused auth experience
   layout: false,
   middleware: [
-    function (to, from) {
+    function (_to, _from) {
       const user = useSupabaseUser()
       if (user.value) {
         return navigateTo('/dashboard')
