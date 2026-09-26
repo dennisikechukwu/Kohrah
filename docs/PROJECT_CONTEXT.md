@@ -167,14 +167,21 @@ The core product viewing and contact exchange surface is implemented with dummy 
 
 The zero-friction guest experience is now visually and functionally mocked out.
 
+### Stage 4 (Authentication & Security) — complete
+
+A professional, passwordless Magic Link authentication system is now implemented:
+- Isolated `AuthForm.vue` component to handle Supabase interactions.
+- Beautiful, premium, glassmorphic login page with ambient mesh backgrounds (`app/pages/login.vue`).
+- Resend configured as the Custom SMTP provider via Supabase for enterprise-grade, white-labeled email delivery.
+- Fully deployed and functional on Vercel (`https://kohrah.dennislab.me`).
+
 ### Not authorised yet
 
 Do not implement any of the following unless the user explicitly names and approves a new stage:
 
-- Remaining landing-page sections
-- Authentication (Stage 4)
-- Onboarding
-- Dashboard functionality
+- Remaining landing-page sections (if any)
+- Onboarding (Stage 5)
+- Dashboard functionality (Profile Management)
 - Analytics
 - Backend services
 - Database functionality
