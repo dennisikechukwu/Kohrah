@@ -1,11 +1,14 @@
+<script setup lang="ts">
+import { HugeiconsIcon } from '@hugeicons/vue'
+import { Calendar01Icon } from '@hugeicons/core-free-icons'
+</script>
+
 <template>
   <div class="w-full rounded-2xl border border-brand-border bg-brand-surface p-4 shadow-card sm:p-5">
     <div class="flex items-center justify-between gap-3">
       <div class="flex items-center gap-2">
         <span class="grid size-8 place-items-center rounded-lg bg-brand-primary-soft text-brand-primary">
-          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" class="size-4">
-            <path d="M5 3.5v2M15 3.5v2M3.5 8h13m-11-3h9A1.5 1.5 0 0 1 16 6.5V15a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 4 15V6.5A1.5 1.5 0 0 1 5.5 5Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
-          </svg>
+          <HugeiconsIcon :icon="Calendar01Icon" class="size-4" stroke-width="1.4" />
         </span>
         <div>
           <p class="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-brand-primary">After the hello</p>

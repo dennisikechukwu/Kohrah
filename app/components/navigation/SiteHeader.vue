@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { HugeiconsIcon } from '@hugeicons/vue'
+import { ArrowRight01Icon, Menu01Icon, Cancel01Icon } from '@hugeicons/core-free-icons'
+
 const isMenuOpen = ref(false)
 const menuButton = useTemplateRef<HTMLButtonElement>('menu-button')
 
@@ -49,9 +52,7 @@ async function closeMenuWithKeyboard() {
           class="group inline-flex items-center justify-center gap-2 rounded-xl bg-brand-ink px-4 py-2.5 text-sm font-semibold text-white outline-none transition hover:-translate-y-0.5 hover:bg-brand-primary focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none"
         >
           View product
-          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" class="size-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none motion-reduce:transition-none">
-            <path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
+          <HugeiconsIcon :icon="ArrowRight01Icon" class="size-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none motion-reduce:transition-none" />
         </a>
       </div>
 
@@ -64,12 +65,8 @@ async function closeMenuWithKeyboard() {
         :aria-label="isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'"
         @click="isMenuOpen = !isMenuOpen"
       >
-        <svg v-if="!isMenuOpen" viewBox="0 0 24 24" fill="none" aria-hidden="true" class="size-5">
-          <path d="M5 8h14M5 16h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-        </svg>
-        <svg v-else viewBox="0 0 24 24" fill="none" aria-hidden="true" class="size-5">
-          <path d="m7 7 10 10M17 7 7 17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-        </svg>
+        <HugeiconsIcon v-if="!isMenuOpen" :icon="Menu01Icon" class="size-5" />
+        <HugeiconsIcon v-else :icon="Cancel01Icon" class="size-5" />
       </button>
 
       <Transition

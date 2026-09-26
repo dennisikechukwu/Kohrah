@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import { HugeiconsIcon } from '@hugeicons/vue'
+import { ArrowRight01Icon, Tick02Icon } from '@hugeicons/core-free-icons'
+</script>
+
 <template>
   <section id="hero" class="relative isolate overflow-hidden px-4 pb-20 pt-14 sm:px-6 sm:pb-28 sm:pt-20 lg:px-8 lg:pt-16">
     <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 mx-auto h-[42rem] max-w-6xl" aria-hidden="true">
@@ -26,16 +31,12 @@
           class="group inline-flex w-full items-center justify-center gap-3 rounded-xl bg-brand-ink px-5 py-3.5 text-sm font-bold text-white shadow-card outline-none transition hover:-translate-y-0.5 hover:bg-brand-primary focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-4 focus-visible:ring-offset-brand-canvas sm:w-auto motion-reduce:transform-none motion-reduce:transition-none"
         >
           See Kohrah in action
-          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" class="size-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none motion-reduce:transition-none">
-            <path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
+          <HugeiconsIcon :icon="ArrowRight01Icon" class="size-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none motion-reduce:transition-none" />
         </a>
 
         <p class="flex items-center gap-2 text-sm font-semibold text-brand-muted">
           <span class="grid size-5 place-items-center rounded-full border border-brand-success text-brand-success">
-            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" class="size-3">
-              <path d="m5.5 10.5 2.7 2.6 6.2-6.3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
+            <HugeiconsIcon :icon="Tick02Icon" class="size-3" stroke-width="1.8" />
           </span>
           No app required to view
         </p>
