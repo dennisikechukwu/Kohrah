@@ -157,18 +157,23 @@ The remaining structural marketing sections were built using `@hugeicons/vue` an
 - The "How it works" workflow section using structural placeholders
 - The Bottom CTA and professional footer
 
-The landing page structural foundation is now complete.
+### Stage 3 (The Public Profile & Zero-Friction Flow) — complete
+
+The core product viewing and contact exchange surface is implemented with dummy data:
+- `app/pages/[slug].vue` dynamic route for public profiles
+- Premium desktop floating-card layout with ambient glow
+- "Save Contact" functionality (dynamic `.vcf` generation)
+- "Exchange Details" modal (`ExchangeModal.vue`) for guests to leave contact info
+
+The zero-friction guest experience is now visually and functionally mocked out.
 
 ### Not authorised yet
 
 Do not implement any of the following unless the user explicitly names and approves a new stage:
 
 - Remaining landing-page sections
-- Authentication
+- Authentication (Stage 4)
 - Onboarding
-- Functional public profiles
-- QR-code generation
-- Contact exchange logic
 - Dashboard functionality
 - Analytics
 - Backend services

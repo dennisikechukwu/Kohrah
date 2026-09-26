@@ -10,9 +10,8 @@ import { QrCode01Icon, Note01Icon, Calendar01Icon } from '@hugeicons/core-free-i
         <p class="text-xs font-bold uppercase tracking-[0.16em] text-brand-primary">
           How it works
         </p>
-        <h2 class="mt-4 text-3xl font-semibold tracking-tight text-brand-ink sm:text-4xl">
-          Exchange details in seconds.<br>
-          Remember them forever.
+        <h2 class="mt-4 text-balance text-3xl font-semibold tracking-tight text-brand-ink sm:text-4xl">
+          Exchange details in seconds. Remember them forever.
         </h2>
         <p class="mt-4 text-lg text-brand-muted">
           No apps to download or complex forms to fill. Kohrah turns the quick, chaotic exchange of information into a structured, permanent relationship.

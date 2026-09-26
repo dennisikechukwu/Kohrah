@@ -46,9 +46,15 @@ async function closeMenuWithKeyboard() {
         </a>
       </nav>
 
-      <div class="hidden items-center md:flex">
+      <div class="hidden items-center gap-4 md:flex">
         <a
-          href="#product-preview"
+          href="/login"
+          class="text-sm font-semibold text-brand-ink outline-none transition-colors hover:text-brand-primary focus-visible:ring-2 focus-visible:ring-brand-primary"
+        >
+          Sign in
+        </a>
+        <a
+          href="/maya"
           class="group inline-flex items-center justify-center gap-2 rounded-xl bg-brand-ink px-4 py-2.5 text-sm font-semibold text-white outline-none transition hover:-translate-y-0.5 hover:bg-brand-primary focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none"
         >
           View product
@@ -93,7 +99,14 @@ async function closeMenuWithKeyboard() {
             {{ item.label }}
           </a>
           <a
-            href="#product-preview"
+            href="/login"
+            class="block rounded-xl px-4 py-3 text-sm font-semibold text-brand-muted outline-none transition-colors hover:bg-brand-canvas hover:text-brand-ink focus-visible:ring-2 focus-visible:ring-brand-primary motion-reduce:transition-none"
+            @click="closeMenu"
+          >
+            Sign in
+          </a>
+          <a
+            href="/maya"
             class="mt-1 flex items-center justify-center rounded-xl bg-brand-ink px-4 py-3 text-sm font-semibold text-white outline-none transition-colors hover:bg-brand-primary focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 motion-reduce:transition-none"
             @click="closeMenu"
           >

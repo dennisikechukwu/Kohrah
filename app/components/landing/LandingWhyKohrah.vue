@@ -20,7 +20,7 @@ import { Briefcase01Icon, Globe02Icon, Calendar01Icon } from '@hugeicons/core-fr
 
       <div class="mt-16 grid grid-cols-1 gap-6 sm:mt-20 lg:grid-cols-3">
         <!-- Pillar 1 -->
-        <div class="relative rounded-[2rem] border border-brand-border bg-brand-surface p-8 shadow-card sm:p-10">
+        <div class="relative rounded-[2rem] border border-brand-border bg-brand-surface p-6 shadow-card sm:p-8 lg:p-10">
           <div class="inline-flex size-12 items-center justify-center rounded-xl bg-brand-canvas text-brand-primary shadow-sm border border-brand-border">
             <HugeiconsIcon :icon="Globe02Icon" class="size-5" :stroke-width="1.6" />
           </div>
@@ -31,7 +31,7 @@ import { Briefcase01Icon, Globe02Icon, Calendar01Icon } from '@hugeicons/core-fr
         </div>
 
         <!-- Pillar 2 -->
-        <div class="relative rounded-[2rem] border border-brand-border bg-brand-surface p-8 shadow-card sm:p-10">
+        <div class="relative rounded-[2rem] border border-brand-border bg-brand-surface p-6 shadow-card sm:p-8 lg:p-10">
           <div class="inline-flex size-12 items-center justify-center rounded-xl bg-brand-canvas text-brand-primary shadow-sm border border-brand-border">
             <HugeiconsIcon :icon="Briefcase01Icon" class="size-5" :stroke-width="1.6" />
           </div>
@@ -42,7 +42,7 @@ import { Briefcase01Icon, Globe02Icon, Calendar01Icon } from '@hugeicons/core-fr
         </div>
 
         <!-- Pillar 3 -->
-        <div class="relative rounded-[2rem] border border-brand-border bg-brand-surface p-8 shadow-card sm:p-10">
+        <div class="relative rounded-[2rem] border border-brand-border bg-brand-surface p-6 shadow-card sm:p-8 lg:p-10">
           <div class="inline-flex size-12 items-center justify-center rounded-xl bg-brand-canvas text-brand-primary shadow-sm border border-brand-border">
             <HugeiconsIcon :icon="Calendar01Icon" class="size-5" :stroke-width="1.6" />
           </div>
