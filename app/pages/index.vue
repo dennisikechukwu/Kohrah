@@ -1,6 +1,14 @@
 <script setup lang="ts">
 definePageMeta({
   layout: 'marketing',
+  middleware: [
+    function (to, from) {
+      const user = useSupabaseUser()
+      if (user.value) {
+        return navigateTo('/dashboard')
+      }
+    }
+  ]
 })
 
 useSeoMeta({

@@ -4,7 +4,15 @@ import { HugeiconsIcon } from '@hugeicons/vue'
 
 definePageMeta({
   // Disable the default layout (SiteHeader/SiteFooter) for a focused auth experience
-  layout: false
+  layout: false,
+  middleware: [
+    function (to, from) {
+      const user = useSupabaseUser()
+      if (user.value) {
+        return navigateTo('/dashboard')
+      }
+    }
+  ]
 })
 </script>
 

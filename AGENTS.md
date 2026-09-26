@@ -42,13 +42,14 @@ These instructions apply to every coding agent working in this repository.
 
 ## Current boundary
 
-Stage 1 (also called Phase 1 in parts of the conversation) is implemented and contains only:
+Stage 4 (Auth) and Stage 5 (Live Profiles) are implemented. The application now contains:
+- Responsive marketing navigation and landing hero
+- Passwordless Magic Link authentication via Supabase
+- User onboarding flow (saving details to the `profiles` table)
+- A secure dashboard to view the generated URL
+- Dynamic public profile pages (`[slug].vue`) that serve data live from the database
 
-- Responsive marketing navigation
-- Landing-page hero
-- Illustrative, non-functional product preview inside the hero
-
-Do not add later landing sections, authentication, onboarding, real public-profile behaviour, QR generation, contact exchange, dashboards, analytics, backend services, or database work until explicitly authorised.
+Do not add later landing sections, QR generation, edit profile flows, lead capture (contact exchange saving), analytics, or team functionality until explicitly authorised.
 
 ## Quality and Git workflow
 

@@ -5,6 +5,8 @@ import { ArrowRight01Icon, Menu01Icon, Cancel01Icon } from '@hugeicons/core-free
 const isMenuOpen = ref(false)
 const menuButton = useTemplateRef<HTMLButtonElement>('menu-button')
 
+const user = useSupabaseUser()
+
 const navigationItems = [
   { label: 'Why Kohrah', href: '#why-kohrah' },
   { label: 'How it works', href: '#how-it-works' },
@@ -47,19 +49,29 @@ async function closeMenuWithKeyboard() {
       </nav>
 
       <div class="hidden items-center gap-4 md:flex">
-        <a
-          href="/login"
-          class="text-sm font-semibold text-brand-ink outline-none transition-colors hover:text-brand-primary focus-visible:ring-2 focus-visible:ring-brand-primary"
-        >
-          Sign in
-        </a>
-        <a
-          href="/maya"
-          class="group inline-flex items-center justify-center gap-2 rounded-xl bg-brand-ink px-4 py-2.5 text-sm font-semibold text-white outline-none transition hover:-translate-y-0.5 hover:bg-brand-primary focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none"
-        >
-          View product
-          <HugeiconsIcon :icon="ArrowRight01Icon" class="size-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none motion-reduce:transition-none" />
-        </a>
+        <template v-if="user">
+          <NuxtLink
+            to="/dashboard"
+            class="group inline-flex items-center justify-center gap-2 rounded-xl bg-brand-ink px-4 py-2.5 text-sm font-semibold text-white outline-none transition hover:-translate-y-0.5 hover:bg-brand-primary focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none"
+          >
+            Go to Dashboard
+          </NuxtLink>
+        </template>
+        <template v-else>
+          <NuxtLink
+            to="/login"
+            class="text-sm font-semibold text-brand-ink outline-none transition-colors hover:text-brand-primary focus-visible:ring-2 focus-visible:ring-brand-primary"
+          >
+            Sign in
+          </NuxtLink>
+          <a
+            href="/maya"
+            class="group inline-flex items-center justify-center gap-2 rounded-xl bg-brand-ink px-4 py-2.5 text-sm font-semibold text-white outline-none transition hover:-translate-y-0.5 hover:bg-brand-primary focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none"
+          >
+            View product
+            <HugeiconsIcon :icon="ArrowRight01Icon" class="size-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transform-none motion-reduce:transition-none" />
+          </a>
+        </template>
       </div>
 
       <button
@@ -98,20 +110,31 @@ async function closeMenuWithKeyboard() {
           >
             {{ item.label }}
           </a>
-          <a
-            href="/login"
-            class="block rounded-xl px-4 py-3 text-sm font-semibold text-brand-muted outline-none transition-colors hover:bg-brand-canvas hover:text-brand-ink focus-visible:ring-2 focus-visible:ring-brand-primary motion-reduce:transition-none"
-            @click="closeMenu"
-          >
-            Sign in
-          </a>
-          <a
-            href="/maya"
-            class="mt-1 flex items-center justify-center rounded-xl bg-brand-ink px-4 py-3 text-sm font-semibold text-white outline-none transition-colors hover:bg-brand-primary focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 motion-reduce:transition-none"
-            @click="closeMenu"
-          >
-            View product
-          </a>
+          <template v-if="user">
+            <NuxtLink
+              to="/dashboard"
+              class="mt-1 flex items-center justify-center rounded-xl bg-brand-ink px-4 py-3 text-sm font-semibold text-white outline-none transition-colors hover:bg-brand-primary focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 motion-reduce:transition-none"
+              @click="closeMenu"
+            >
+              Go to Dashboard
+            </NuxtLink>
+          </template>
+          <template v-else>
+            <NuxtLink
+              to="/login"
+              class="block rounded-xl px-4 py-3 text-sm font-semibold text-brand-muted outline-none transition-colors hover:bg-brand-canvas hover:text-brand-ink focus-visible:ring-2 focus-visible:ring-brand-primary motion-reduce:transition-none"
+              @click="closeMenu"
+            >
+              Sign in
+            </NuxtLink>
+            <a
+              href="/maya"
+              class="mt-1 flex items-center justify-center rounded-xl bg-brand-ink px-4 py-3 text-sm font-semibold text-white outline-none transition-colors hover:bg-brand-primary focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 motion-reduce:transition-none"
+              @click="closeMenu"
+            >
+              View product
+            </a>
+          </template>
         </nav>
       </Transition>
     </div>

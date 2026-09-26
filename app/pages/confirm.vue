@@ -5,6 +5,8 @@ import { onMounted } from 'vue'
 const user = useSupabaseUser()
 const router = useRouter()
 
+import type { Database } from '~/types/database.types'
+
 // 1. This page acts as the callback handler for Supabase Magic Links.
 // When the user clicks the link in their email, they land here.
 // Nuxt Supabase intercepts the URL fragment, sets the secure HTTP-only cookies,
@@ -13,10 +15,22 @@ const router = useRouter()
 
 watch(
   user,
-  () => {
+  async () => {
     if (user.value) {
-      // Redirect to the dashboard once the session is established securely via cookies
-      return router.push('/dashboard')
+      // 1. Fetch the user's profile to check if they've onboarded
+      const supabase = useSupabaseClient<Database>()
+      const { data } = await supabase
+        .from('profiles')
+        .select('is_onboarded')
+        .eq('id', user.value.sub)
+        .maybeSingle()
+        
+      // 2. Route dynamically based on onboarding state
+      if (data?.is_onboarded) {
+        return router.push('/dashboard')
+      } else {
+        return router.push('/onboarding')
+      }
     }
   },
   { immediate: true }

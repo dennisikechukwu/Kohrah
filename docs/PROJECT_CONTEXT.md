@@ -8,16 +8,14 @@ This document is the permanent handoff for Kohrah. It records the product intent
 
 - Product: professional networking and relationship-continuity platform
 - Market focus: individuals first; teams, events, and enterprise later
-- Current workstream: staged marketing landing page
-- Current authorised implementation: Stage 1 / Phase 1 only
-- Stage 1 contents: responsive navigation and hero
-- Stage 1 status: implemented, reviewed through several design iterations, and pushed to `main`
+- Current workstream: Core Product MVP (Authentication, Onboarding, Dashboard, Live Profiles)
+- Current authorised implementation: Stage 4 (Auth) & Stage 5 (Live Profiles)
+- Stage 5 contents: Real database-backed digital cards, secure routing, and user dashboard
+- Stage 5 status: implemented, securely tested, and ready for deployment
 - Current approved direction: centred full-width hero copy with a layered product preview rising into the lower part of the hero
 - Current font: Manrope
 - Current primary accent: cobalt blue; purple was explicitly rejected
 - Current branch: `main`
-- Last product commit before this documentation: `df7acc8 style: restore Manrope typography`
-- Next implementation stage: not yet defined or authorised
 
 The page must remain at Stage 1 until the user explicitly approves more work.
 
@@ -172,19 +170,25 @@ The zero-friction guest experience is now visually and functionally mocked out.
 A professional, passwordless Magic Link authentication system is now implemented:
 - Isolated `AuthForm.vue` component to handle Supabase interactions.
 - Beautiful, premium, glassmorphic login page with ambient mesh backgrounds (`app/pages/login.vue`).
+- Secure callback flow (`app/pages/confirm.vue`) that handles missing database rows gracefully.
 - Resend configured as the Custom SMTP provider via Supabase for enterprise-grade, white-labeled email delivery.
-- Fully deployed and functional on Vercel (`https://kohrah.dennislab.me`).
+
+### Stage 5 (Dashboard & Live Profiles) — complete
+
+The core product loop is now fully dynamic and wired to the database:
+- `app/pages/onboarding.vue` captures the user's initial details and provisions their unique URL slug.
+- `app/pages/dashboard.vue` provides a secure, authenticated area to copy their live URL and gracefully handles missing profiles.
+- `app/pages/[slug].vue` dynamically fetches the user's live profile, generates an accurate `.vcf` file on the fly, and injects personalized SEO metadata.
+- Custom route middleware ensures a zero-flicker experience, automatically redirecting authenticated users from the marketing site to the dashboard.
 
 ### Not authorised yet
 
 Do not implement any of the following unless the user explicitly names and approves a new stage:
 
-- Remaining landing-page sections (if any)
-- Onboarding (Stage 5)
-- Dashboard functionality (Profile Management)
+- Edit Profile functionality in the dashboard
+- Social Links / Custom link fields (requires database schema migration)
+- QR Code generation
 - Analytics
-- Backend services
-- Database functionality
 - Team, event, or enterprise functionality
 
 There is intentionally no assumed Stage 2. At the start of the next implementation session, ask for or follow the user's specific next-stage brief. Do not continue simply because a next section seems obvious.
@@ -636,12 +640,10 @@ At the beginning of a session, run `git status --short` and inspect recent commi
 
 - The entire visible product preview is illustrative and non-interactive.
 - Navigation anchors currently point to future sections that are not yet implemented.
-- CTA destinations do not represent an implemented product flow yet.
-- The QR pattern is decorative; no QR code is generated or scannable.
-- Email, call, website, save-contact, exchange, meeting context, and follow-up actions are visual only.
-- There is no authentication, persistence, API, backend, database, analytics, or account state.
-- The fictional profile does not represent a real user.
-- Only navigation and hero are present; later marketing sections remain intentionally absent.
+- The QR pattern is decorative; no QR code is generated or scannable yet.
+- The "Edit Profile" button in the dashboard is disabled.
+- The "Exchange Details" modal does not save leads to the database yet.
+- There are no columns for Social Links (Twitter/LinkedIn) in the database yet.
 - The three original visual-reference screenshots are not stored in the repository. Their intended lessons are preserved in this document. If exact archival copies are needed, the user must reattach them so they can be copied into a tracked reference folder.
 
 ## 18. Required handoff after every future stage

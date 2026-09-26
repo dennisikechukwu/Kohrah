@@ -15,9 +15,9 @@ export default defineNuxtConfig({
     redirectOptions: {
       login: '/login',
       callback: '/confirm',
-      // By default the supabase module protects all routes and redirects to login. 
-      // We must exclude the marketing site and public profile pages from this protection.
-      exclude: ['/', '/(.*)'] // Later we will protect specific routes like '/dashboard'
+      // We explicitly include only the routes that require authentication.
+      // All other routes (marketing, public profiles) remain public.
+      include: ['/onboarding', '/dashboard']
     }
   },
   css: ['~/assets/css/main.css'],
