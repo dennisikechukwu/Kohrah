@@ -229,7 +229,7 @@ Kohrah should feel:
 - Beautiful but straightforward
 - Modern without depending on temporary trends
 
-Create depth with surface contrast, thin borders, soft shadows, layering, restrained colour glows, strong typography, and deliberate whitespace.
+Create depth with surface contrast, thin borders, soft shadows, layering, restrained colour glows, strong typography, and deliberate whitespace. Icons should be sharp, clear, and professional, utilising `@hugeicons/core-free-icons` for a premium product feel.
 
 Avoid:
 
@@ -456,6 +456,8 @@ From `package.json` at this handoff:
 - `vue`: `^3.5.42`
 - `vue-router`: `^5.3.1`
 - `@fontsource-variable/manrope`: `^5.3.0`
+- `@hugeicons/vue`: `^1.0.8`
+- `@hugeicons/core-free-icons`: `^4.3.5`
 
 ### Development dependencies
 
@@ -597,6 +599,7 @@ Meaningful milestones leading to the current product state:
 | `fa89cd9` | Refine hero colour and motion |
 | `c21be5f` | Refine typography and hero motion |
 | `df7acc8` | Restore approved Manrope typography |
+| `006fa82` | Replace bespoke inline SVGs with Hugeicons |
 
 The user wants work committed and pushed frequently so completed product progress appears on GitHub. Interpret this as meaningful checkpoints:
 
