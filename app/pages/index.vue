@@ -14,5 +14,11 @@ useSeoMeta({
 </script>
 
 <template>
-  <LandingHero />
+  <main>
+    <LandingHero />
+    <LandingWhyKohrah />
+    <LandingWorkflow />
+    <LandingCTA />
+    <LandingFooter />
+  </main>
 </template>

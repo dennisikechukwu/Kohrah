@@ -8,7 +8,7 @@ import { Calendar01Icon } from '@hugeicons/core-free-icons'
     <div class="flex items-center justify-between gap-3">
       <div class="flex items-center gap-2">
         <span class="grid size-8 place-items-center rounded-lg bg-brand-primary-soft text-brand-primary">
-          <HugeiconsIcon :icon="Calendar01Icon" class="size-4" stroke-width="1.4" />
+          <HugeiconsIcon :icon="Calendar01Icon" class="size-4" :stroke-width="1.4" />
         </span>
         <div>
           <p class="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-brand-primary">After the hello</p>

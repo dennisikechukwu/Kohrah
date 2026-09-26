@@ -10,9 +10,9 @@ import { ArrowRight01Icon, Tick02Icon } from '@hugeicons/core-free-icons'
       <div class="absolute left-[12%] top-56 size-44 rounded-full bg-brand-coral/5 blur-3xl" />
     </div>
 
-    <div id="why-kohrah" class="mx-auto max-w-5xl scroll-mt-32 animate-hero-enter text-center motion-reduce:animate-none">
+    <div class="mx-auto max-w-5xl scroll-mt-32 animate-hero-enter text-center motion-reduce:animate-none">
       <p class="flex items-center justify-center gap-2.5 text-xs font-bold uppercase tracking-[0.16em] text-brand-muted sm:text-sm">
-        <span class="size-1.5 rounded-full bg-brand-coral" />
+        <span class="size-1.5 rounded-full bg-black" />
         For connections worth keeping
       </p>
 
@@ -36,7 +36,7 @@ import { ArrowRight01Icon, Tick02Icon } from '@hugeicons/core-free-icons'
 
         <p class="flex items-center gap-2 text-sm font-semibold text-brand-muted">
           <span class="grid size-5 place-items-center rounded-full border border-brand-success text-brand-success">
-            <HugeiconsIcon :icon="Tick02Icon" class="size-3" stroke-width="1.8" />
+            <HugeiconsIcon :icon="Tick02Icon" class="size-3" :stroke-width="1.8" />
           </span>
           No app required to view
         </p>

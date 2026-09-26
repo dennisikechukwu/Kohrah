@@ -142,14 +142,22 @@ The words “Stage 1” and “Phase 1” were both used during the conversation
 - Established layouts, page composition, and component ownership
 - Kept dependencies focused
 
-### Stage 1 / Phase 1 — complete and awaiting further direction
+### Stage 1 / Phase 1 — complete
 
-The only authorised marketing implementation was:
+The initial marketing implementation included:
 
 - Responsive site navigation
 - Landing-page hero
+- Illustrative product preview
 
-The hero contains an illustrative product preview to communicate the workflow, but it is not product functionality.
+### Stage 2 (Foundation Complete) — complete and awaiting further direction
+
+The remaining structural marketing sections were built using `@hugeicons/vue` and Tailwind:
+- The "Why Kohrah" value proposition section
+- The "How it works" workflow section using structural placeholders
+- The Bottom CTA and professional footer
+
+The landing page structural foundation is now complete.
 
 ### Not authorised yet
 
@@ -600,6 +608,7 @@ Meaningful milestones leading to the current product state:
 | `c21be5f` | Refine typography and hero motion |
 | `df7acc8` | Restore approved Manrope typography |
 | `006fa82` | Replace bespoke inline SVGs with Hugeicons |
+| `[pending]` | Complete landing page foundation (Why Kohrah, Workflow, CTA, Footer) |
 
 The user wants work committed and pushed frequently so completed product progress appears on GitHub. Interpret this as meaningful checkpoints:
 

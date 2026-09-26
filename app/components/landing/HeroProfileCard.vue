@@ -18,7 +18,7 @@ import { ArrowUpRight01Icon, Mail01Icon, Call02Icon, Globe02Icon, Add01Icon } fr
           kohrah.com/maya
         </span>
         <span class="grid size-9 place-items-center rounded-full border border-white/50 bg-white/90 text-brand-ink shadow-sm">
-          <HugeiconsIcon :icon="ArrowUpRight01Icon" class="size-4" stroke-width="1.5" />
+          <HugeiconsIcon :icon="ArrowUpRight01Icon" class="size-4" :stroke-width="1.5" />
         </span>
       </div>
     </div>
@@ -41,15 +41,15 @@ import { ArrowUpRight01Icon, Mail01Icon, Call02Icon, Globe02Icon, Add01Icon } fr
 
       <div class="mt-5 grid grid-cols-3 overflow-hidden rounded-xl border border-brand-border bg-brand-canvas/60">
         <div class="flex flex-col items-center gap-1.5 py-3 text-[0.65rem] font-bold text-brand-muted">
-          <HugeiconsIcon :icon="Mail01Icon" class="size-4 text-brand-primary" stroke-width="1.4" />
+          <HugeiconsIcon :icon="Mail01Icon" class="size-4 text-brand-primary" :stroke-width="1.4" />
           Email
         </div>
         <div class="flex flex-col items-center gap-1.5 border-x border-brand-border py-3 text-[0.65rem] font-bold text-brand-muted">
-          <HugeiconsIcon :icon="Call02Icon" class="size-4 text-brand-primary" stroke-width="1.4" />
+          <HugeiconsIcon :icon="Call02Icon" class="size-4 text-brand-primary" :stroke-width="1.4" />
           Call
         </div>
         <div class="flex flex-col items-center gap-1.5 py-3 text-[0.65rem] font-bold text-brand-muted">
-          <HugeiconsIcon :icon="Globe02Icon" class="size-4 text-brand-primary" stroke-width="1.4" />
+          <HugeiconsIcon :icon="Globe02Icon" class="size-4 text-brand-primary" :stroke-width="1.4" />
           Website
         </div>
       </div>
@@ -57,7 +57,7 @@ import { ArrowUpRight01Icon, Mail01Icon, Call02Icon, Globe02Icon, Add01Icon } fr
       <div class="mt-4 grid grid-cols-[1fr_auto] gap-2">
         <div class="rounded-xl bg-brand-primary px-4 py-3.5 text-center text-xs font-bold text-white shadow-sm">Save contact</div>
         <div class="grid size-11 place-items-center rounded-xl border border-brand-border bg-brand-surface text-brand-ink">
-          <HugeiconsIcon :icon="Add01Icon" class="size-4" stroke-width="1.6" />
+          <HugeiconsIcon :icon="Add01Icon" class="size-4" :stroke-width="1.6" />
         </div>
       </div>
     </div>

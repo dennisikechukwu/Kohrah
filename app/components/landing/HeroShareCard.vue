@@ -15,7 +15,7 @@ import { QrCode01Icon, Tick02Icon } from '@hugeicons/core-free-icons'
     </div>
 
     <div class="mt-4 flex items-center gap-2 border-t border-white/10 pt-3 text-[0.65rem] font-semibold text-white/65">
-      <HugeiconsIcon :icon="Tick02Icon" class="size-4 text-brand-coral" stroke-width="1.8" />
+      <HugeiconsIcon :icon="Tick02Icon" class="size-4 text-brand-coral" :stroke-width="1.8" />
       No app required to view
     </div>
   </div>

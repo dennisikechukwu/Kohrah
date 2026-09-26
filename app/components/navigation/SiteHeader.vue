@@ -7,7 +7,7 @@ const menuButton = useTemplateRef<HTMLButtonElement>('menu-button')
 
 const navigationItems = [
   { label: 'Why Kohrah', href: '#why-kohrah' },
-  { label: 'How it works', href: '#product-preview' },
+  { label: 'How it works', href: '#how-it-works' },
 ] as const
 
 function closeMenu() {
