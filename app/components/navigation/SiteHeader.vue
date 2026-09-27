@@ -65,7 +65,7 @@ async function closeMenuWithKeyboard() {
             Sign in
           </NuxtLink>
           <a
-            href="/dennis-dev"
+            href="/maya"
             class="group inline-flex items-center justify-center gap-2 rounded-xl bg-brand-ink px-4 py-2.5 text-sm font-semibold text-white outline-none transition hover:-translate-y-0.5 hover:bg-brand-primary focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 motion-reduce:transform-none motion-reduce:transition-none"
           >
             View product
@@ -128,7 +128,7 @@ async function closeMenuWithKeyboard() {
               Sign in
             </NuxtLink>
             <a
-              href="/dennis-dev"
+              href="/maya"
               class="mt-1 flex items-center justify-center rounded-xl bg-brand-ink px-4 py-3 text-sm font-semibold text-white outline-none transition-colors hover:bg-brand-primary focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2 motion-reduce:transition-none"
               @click="closeMenu"
             >

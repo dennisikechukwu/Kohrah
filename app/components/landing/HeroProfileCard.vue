@@ -15,7 +15,7 @@ import { ArrowUpRight01Icon, Mail01Icon, Call02Icon, Globe02Icon, Add01Icon } fr
       >
       <div class="absolute inset-x-0 top-0 flex items-center justify-between p-4">
         <span class="rounded-full bg-brand-ink/80 px-3 py-1.5 text-[0.65rem] font-semibold text-white backdrop-blur-sm">
-          kohrah.com/dennis-dev
+          kohrah.com/maya
         </span>
         <span class="grid size-9 place-items-center rounded-full border border-white/50 bg-white/90 text-brand-ink shadow-sm">
           <HugeiconsIcon :icon="ArrowUpRight01Icon" class="size-4" :stroke-width="1.5" />
