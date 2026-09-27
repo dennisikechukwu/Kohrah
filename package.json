@@ -17,13 +17,17 @@
     "@hugeicons/core-free-icons": "^4.3.5",
     "@hugeicons/vue": "^1.0.8",
     "@nuxtjs/supabase": "^2.0.10",
+    "@supabase/supabase-js": "^2.117.2",
     "nuxt": "^4.5.2",
+    "qrcode.vue": "^3.11.0",
+    "resend": "^6.30.0",
     "vue": "^3.5.42",
     "vue-router": "^5.3.1"
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.17.0",
     "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^26.6.3",
     "eslint": "^10.10.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^5.9.3",

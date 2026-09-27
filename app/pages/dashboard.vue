@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { HugeiconsIcon } from '@hugeicons/vue'
-import { Logout01Icon, Edit02Icon, Link04Icon, CheckmarkBadge01Icon, UserGroupIcon } from '@hugeicons/core-free-icons'
+import { Logout01Icon, Edit02Icon, Link04Icon, CheckmarkBadge01Icon, UserGroupIcon, EyeIcon, QrCodeIcon, ExternalLinkIcon } from '@hugeicons/core-free-icons'
+import QrcodeVue from 'qrcode.vue'
 import type { Database } from '~/types/database.types'
+import ProfileEditModal from '~/components/profile/EditProfileModal.vue'
 
 definePageMeta({
   layout: false // We will use a custom fullscreen layout for the dashboard
@@ -17,22 +19,44 @@ const requestUrl = useRequestURL()
 
 const profile = ref<Database['public']['Tables']['profiles']['Row'] | null>(null)
 const isCopied = ref(false)
+const isEditModalOpen = ref(false)
 
-onMounted(async () => {
-  if (user.value?.sub) {
-    const { data } = await supabase
-      .from('profiles')
+const connections = ref<Database['public']['Tables']['connections']['Row'][]>([])
+const totalViews = ref(0)
+
+const fetchProfile = async () => {
+  if (!user.value?.sub) return
+  
+  const { data } = await supabase
+    .from('profiles')
+    .select('*')
+    .eq('id', user.value.sub)
+    .maybeSingle()
+    
+  if (data) {
+    profile.value = data
+
+    // Fetch connections
+    const { data: conns } = await supabase
+      .from('connections')
       .select('*')
-      .eq('id', user.value.sub)
-      .maybeSingle()
-      
-    if (data) {
-      profile.value = data
-    } else {
-      // If the user somehow bypassed onboarding or has no row, send them to onboarding
-      router.push('/onboarding')
-    }
+      .eq('profile_id', data.id)
+      .order('created_at', { ascending: false })
+    connections.value = conns || []
+
+    // Fetch views count
+    const { count } = await supabase
+      .from('page_views')
+      .select('*', { count: 'exact', head: true })
+      .eq('profile_id', data.id)
+    totalViews.value = count || 0
+  } else {
+    router.push('/onboarding')
   }
+}
+
+onMounted(() => {
+  fetchProfile()
 })
 
 const isSignOutModalOpen = ref(false)
@@ -55,6 +79,25 @@ const copyLink = async () => {
   } catch (err) {
     console.error('Failed to copy', err)
   }
+}
+
+const profileUrl = computed(() => {
+  if (!profile.value?.slug) return ''
+  return `${requestUrl.protocol}//${requestUrl.host}/${profile.value.slug}`
+})
+
+const timeAgo = (dateStr: string) => {
+  const now = new Date()
+  const date = new Date(dateStr)
+  const seconds = Math.floor((now.getTime() - date.getTime()) / 1000)
+  if (seconds < 60) return 'Just now'
+  const minutes = Math.floor(seconds / 60)
+  if (minutes < 60) return `${minutes}m ago`
+  const hours = Math.floor(minutes / 60)
+  if (hours < 24) return `${hours}h ago`
+  const days = Math.floor(hours / 24)
+  if (days < 7) return `${days}d ago`
+  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
 }
 </script>
 
@@ -88,7 +131,7 @@ const copyLink = async () => {
       </div>
 
       <!-- Content -->
-      <div v-else class="animate-nav-enter space-y-10">
+      <div v-else class="animate-nav-enter space-y-8">
         
         <!-- Welcome Header -->
         <div>
@@ -98,13 +141,53 @@ const copyLink = async () => {
           <p class="mt-2 text-brand-muted">Manage your digital identity and connections.</p>
         </div>
 
+        <!-- Stats Row -->
+        <div class="grid grid-cols-2 gap-4 sm:grid-cols-3">
+          <!-- Profile Views -->
+          <div class="relative overflow-hidden rounded-2xl border border-brand-border bg-white p-5 shadow-card">
+            <div class="absolute -right-4 -top-4 size-20 rounded-full bg-brand-primary/5 blur-[30px]" />
+            <div class="relative">
+              <div class="flex items-center gap-2 text-brand-muted">
+                <HugeiconsIcon :icon="EyeIcon" class="size-4" :stroke-width="1.8" />
+                <span class="text-xs font-bold uppercase tracking-wider">Views</span>
+              </div>
+              <p class="mt-2 text-3xl font-black text-brand-ink">{{ totalViews }}</p>
+            </div>
+          </div>
+
+          <!-- Connections Count -->
+          <div class="relative overflow-hidden rounded-2xl border border-brand-border bg-white p-5 shadow-card">
+            <div class="absolute -right-4 -top-4 size-20 rounded-full bg-brand-primary/5 blur-[30px]" />
+            <div class="relative">
+              <div class="flex items-center gap-2 text-brand-muted">
+                <HugeiconsIcon :icon="UserGroupIcon" class="size-4" :stroke-width="1.8" />
+                <span class="text-xs font-bold uppercase tracking-wider">Leads</span>
+              </div>
+              <p class="mt-2 text-3xl font-black text-brand-ink">{{ connections.length }}</p>
+            </div>
+          </div>
+
+          <!-- Profile Status -->
+          <div class="col-span-2 sm:col-span-1 relative overflow-hidden rounded-2xl border border-brand-border bg-white p-5 shadow-card">
+            <div class="absolute -right-4 -top-4 size-20 rounded-full bg-green-500/5 blur-[30px]" />
+            <div class="relative">
+              <div class="flex items-center gap-2 text-brand-muted">
+                <div class="size-2 rounded-full bg-green-500 animate-pulse" />
+                <span class="text-xs font-bold uppercase tracking-wider">Status</span>
+              </div>
+              <p class="mt-2 text-lg font-bold text-brand-ink">Live</p>
+            </div>
+          </div>
+        </div>
+
         <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
           
           <!-- Your Card Section (2 columns wide) -->
-          <div class="lg:col-span-2">
+          <div class="lg:col-span-2 space-y-6">
             <div class="relative overflow-hidden rounded-3xl border border-brand-border bg-white shadow-card">
               <!-- Background Ambient -->
               <div class="absolute -right-20 -top-20 size-64 rounded-full bg-brand-primary/5 blur-[80px]" />
+              <div class="absolute -left-32 -bottom-32 size-64 rounded-full bg-brand-primary/3 blur-[80px]" />
               
               <div class="relative p-6 sm:p-8">
                 <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6">
@@ -123,14 +206,23 @@ const copyLink = async () => {
                     </div>
                   </div>
 
-                  <NuxtLink 
-                    to="/dashboard" 
-                    class="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-canvas px-4 py-2.5 text-sm font-bold text-brand-ink shadow-sm ring-1 ring-inset ring-brand-border transition-colors hover:bg-brand-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary shrink-0 opacity-50 cursor-not-allowed"
-                    title="Edit profile coming soon"
-                  >
-                    <HugeiconsIcon :icon="Edit02Icon" class="size-4" />
-                    Edit Profile
-                  </NuxtLink>
+                  <div class="flex items-center gap-2 shrink-0">
+                    <NuxtLink 
+                      :to="`/${profile.slug}`"
+                      target="_blank"
+                      class="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-canvas px-4 py-2.5 text-sm font-bold text-brand-ink shadow-sm ring-1 ring-inset ring-brand-border transition-colors hover:bg-brand-surface hover:text-brand-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"
+                    >
+                      <HugeiconsIcon :icon="ExternalLinkIcon" class="size-4" />
+                      Preview
+                    </NuxtLink>
+                    <button 
+                      class="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-ink px-4 py-2.5 text-sm font-bold text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-brand-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"
+                      @click="isEditModalOpen = true"
+                    >
+                      <HugeiconsIcon :icon="Edit02Icon" class="size-4" />
+                      Edit
+                    </button>
+                  </div>
                 </div>
 
                 <div class="mt-8 border-t border-brand-border/60 pt-6">
@@ -170,16 +262,70 @@ const copyLink = async () => {
                 </div>
               </div>
             </div>
+
+            <!-- QR Code Card -->
+            <div class="relative overflow-hidden rounded-3xl border border-brand-border bg-white p-6 sm:p-8 shadow-card">
+              <div class="absolute -left-16 -bottom-16 size-48 rounded-full bg-brand-primary/5 blur-[60px]" />
+              <div class="relative flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
+                <div class="shrink-0 rounded-2xl bg-white p-3 shadow-sm border border-brand-border/40">
+                  <ClientOnly>
+                    <QrcodeVue :value="profileUrl" :size="100" level="M" render-as="svg" />
+                  </ClientOnly>
+                </div>
+                <div class="text-center sm:text-left">
+                  <div class="flex items-center gap-2 justify-center sm:justify-start">
+                    <HugeiconsIcon :icon="QrCodeIcon" class="size-5 text-brand-primary" :stroke-width="1.8" />
+                    <h3 class="text-lg font-bold text-brand-ink">Your QR Code</h3>
+                  </div>
+                  <p class="mt-2 text-sm text-brand-muted leading-relaxed max-w-sm">
+                    Anyone can scan this to instantly open your profile. Screenshot it for your slides, print it on your badge, or save it to your phone.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
           
-          <!-- Recent Connections / Stats Placeholder -->
-          <div class="lg:col-span-1 space-y-6">
-            <div class="rounded-3xl border border-brand-border bg-white p-6 shadow-card flex flex-col justify-center items-center text-center h-full min-h-[200px]">
-               <div class="rounded-full bg-brand-primary/10 p-3 mb-4 text-brand-primary">
-                  <HugeiconsIcon :icon="UserGroupIcon" class="size-6" />
-               </div>
-               <h3 class="text-sm font-bold text-brand-ink">Connections</h3>
-               <p class="mt-2 text-xs text-brand-muted leading-relaxed">You haven't remembered anyone yet. Share your card to get started!</p>
+          <!-- Recent Connections -->
+          <div class="lg:col-span-1">
+            <div class="rounded-3xl border border-brand-border bg-white shadow-card overflow-hidden flex flex-col h-full min-h-[360px] lg:max-h-[calc(100vh-20rem)]">
+              <div class="p-5 border-b border-brand-border/60 bg-brand-surface/50 shrink-0">
+                <h3 class="text-sm font-bold text-brand-ink flex items-center justify-between">
+                  <span class="flex items-center gap-2">
+                    <HugeiconsIcon :icon="UserGroupIcon" class="size-4.5 text-brand-primary" />
+                    Recent Connections
+                  </span>
+                  <span v-if="connections.length" class="text-xs font-bold text-brand-muted bg-brand-canvas rounded-lg px-2 py-1">{{ connections.length }}</span>
+                </h3>
+              </div>
+              
+              <div v-if="connections.length === 0" class="flex-1 flex flex-col justify-center items-center text-center p-6">
+                 <div class="rounded-2xl bg-brand-primary/8 p-4 mb-4 text-brand-primary">
+                    <HugeiconsIcon :icon="UserGroupIcon" class="size-7" />
+                 </div>
+                 <p class="text-sm font-bold text-brand-ink">No connections yet</p>
+                 <p class="mt-1 text-xs text-brand-muted leading-relaxed font-medium max-w-[200px]">Share your profile link to start capturing leads.</p>
+              </div>
+
+              <div v-else class="flex-1 overflow-y-auto">
+                <div v-for="(conn, i) in connections" :key="conn.id" class="group">
+                  <div class="px-5 py-4 transition-colors hover:bg-brand-canvas/50">
+                    <div class="flex items-start justify-between gap-3">
+                      <div class="flex items-center gap-3 min-w-0">
+                        <div class="flex size-9 shrink-0 items-center justify-center rounded-xl bg-brand-primary-soft/40 text-sm font-black text-brand-primary">
+                          {{ conn.contact_name?.charAt(0).toUpperCase() }}
+                        </div>
+                        <div class="min-w-0">
+                          <p class="text-sm font-bold text-brand-ink truncate">{{ conn.contact_name }}</p>
+                          <a :href="`mailto:${conn.contact_email}`" class="text-xs font-semibold text-brand-primary hover:underline block truncate">{{ conn.contact_email }}</a>
+                        </div>
+                      </div>
+                      <span class="text-[0.65rem] font-medium text-brand-muted whitespace-nowrap pt-1">{{ timeAgo(conn.created_at) }}</span>
+                    </div>
+                    <p v-if="conn.context" class="mt-2 ml-12 text-xs text-brand-muted line-clamp-2 leading-relaxed">{{ conn.context }}</p>
+                  </div>
+                  <div v-if="i < connections.length - 1" class="mx-5 border-b border-brand-border/30" />
+                </div>
+              </div>
             </div>
           </div>
           
@@ -228,5 +374,13 @@ const copyLink = async () => {
         </div>
       </Transition>
     </Teleport>
+
+    <!-- Edit Profile Modal -->
+    <ProfileEditModal
+      :is-open="isEditModalOpen"
+      :profile="profile"
+      @close="isEditModalOpen = false"
+      @profile-updated="fetchProfile"
+    />
   </div>
 </template>

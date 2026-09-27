@@ -7,8 +7,13 @@ import {
   Download04Icon, 
   Share01Icon, 
   CardExchange01Icon,
-  CheckmarkBadge01Icon
+  CheckmarkBadge01Icon,
+  Linkedin01Icon,
+  NewTwitterIcon,
+  InstagramIcon,
+  GlobeIcon
 } from '@hugeicons/core-free-icons'
+import QrcodeVue from 'qrcode.vue'
 
 import ProfileExchangeModal from '~/components/profile/ExchangeModal.vue'
 import type { Database } from '~/types/database.types'
@@ -46,6 +51,16 @@ const isExchangeModalOpen = ref(false)
 const isSaving = ref(false)
 const isCopied = ref(false)
 
+onMounted(async () => {
+  if (profile.value) {
+    // Track page view
+    await supabase.from('page_views').insert({
+      profile_id: profile.value.id,
+      user_agent: navigator.userAgent
+    })
+  }
+})
+
 const shareProfile = async () => {
   if (!profile.value) return
   const shareData = {
@@ -81,13 +96,13 @@ const copyToClipboard = async () => {
       document.body.appendChild(textArea)
       textArea.focus()
       textArea.select()
-      try { document.execCommand('copy') } catch (_err) { /* ignore fallback error */ }
+      try { document.execCommand('copy') } catch { /* ignore fallback error */ }
       textArea.remove()
     }
     
     isCopied.value = true
     setTimeout(() => { isCopied.value = false }, 2000)
-  } catch (_err) {
+  } catch {
     /* ignore clipboard API error */
   }
 }
@@ -197,6 +212,32 @@ END:VCARD`
           </button>
         </div>
 
+        <!-- Social Links -->
+        <div v-if="profile.website || profile.linkedin_url || profile.twitter_url || profile.instagram_url" class="mt-8 flex flex-wrap justify-center gap-4">
+          <a v-if="profile.website" :href="profile.website" target="_blank" rel="noopener noreferrer" class="grid size-12 place-items-center rounded-2xl bg-brand-primary-soft/30 text-brand-primary transition hover:-translate-y-1 hover:bg-brand-primary-soft/60 focus:outline-none focus:ring-2 focus:ring-brand-primary">
+            <HugeiconsIcon :icon="GlobeIcon" class="size-6" :stroke-width="1.8" />
+          </a>
+          <a v-if="profile.linkedin_url" :href="profile.linkedin_url" target="_blank" rel="noopener noreferrer" class="grid size-12 place-items-center rounded-2xl bg-brand-primary-soft/30 text-brand-primary transition hover:-translate-y-1 hover:bg-brand-primary-soft/60 focus:outline-none focus:ring-2 focus:ring-brand-primary">
+            <HugeiconsIcon :icon="Linkedin01Icon" class="size-6" :stroke-width="1.8" />
+          </a>
+          <a v-if="profile.twitter_url" :href="profile.twitter_url" target="_blank" rel="noopener noreferrer" class="grid size-12 place-items-center rounded-2xl bg-brand-primary-soft/30 text-brand-primary transition hover:-translate-y-1 hover:bg-brand-primary-soft/60 focus:outline-none focus:ring-2 focus:ring-brand-primary">
+            <HugeiconsIcon :icon="NewTwitterIcon" class="size-6" :stroke-width="1.8" />
+          </a>
+          <a v-if="profile.instagram_url" :href="profile.instagram_url" target="_blank" rel="noopener noreferrer" class="grid size-12 place-items-center rounded-2xl bg-brand-primary-soft/30 text-brand-primary transition hover:-translate-y-1 hover:bg-brand-primary-soft/60 focus:outline-none focus:ring-2 focus:ring-brand-primary">
+            <HugeiconsIcon :icon="InstagramIcon" class="size-6" :stroke-width="1.8" />
+          </a>
+        </div>
+
+        <!-- QR Code -->
+        <div class="mt-10 flex flex-col items-center border-t border-brand-border/60 pt-8">
+          <div class="rounded-3xl bg-white p-4 shadow-sm border border-brand-border/40">
+            <ClientOnly>
+              <QrcodeVue :value="`https://kohrah.com/${profile.slug}`" :size="120" level="M" render-as="svg" />
+            </ClientOnly>
+          </div>
+          <p class="mt-4 text-xs font-medium text-brand-muted uppercase tracking-widest">Scan to Connect</p>
+        </div>
+
         <!-- Spacer to push branding to bottom -->
         <div class="flex-1"/>
         
@@ -211,6 +252,7 @@ END:VCARD`
       v-if="profile"
       :is-open="isExchangeModalOpen"
       :profile-name="profile.full_name || 'this user'"
+      :profile-id="profile.id"
       @close="isExchangeModalOpen = false"
     />
   </div>

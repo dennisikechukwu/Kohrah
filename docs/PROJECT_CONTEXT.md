@@ -8,10 +8,10 @@ This document is the permanent handoff for Kohrah. It records the product intent
 
 - Product: professional networking and relationship-continuity platform
 - Market focus: individuals first; teams, events, and enterprise later
-- Current workstream: Core Product MVP (Authentication, Onboarding, Dashboard, Live Profiles)
-- Current authorised implementation: Stage 4 (Auth) & Stage 5 (Live Profiles)
-- Stage 5 contents: Real database-backed digital cards, secure routing, and user dashboard
-- Stage 5 status: implemented, securely tested, and ready for deployment
+- Current workstream: Core Product MVP (Authentication, Onboarding, Dashboard, Live Profiles, Analytics, Lead Capture)
+- Current authorised implementation: Stage 6 (Growth & Engagement)
+- Stage 6 contents: Dynamic QR codes, social link fields, profile views analytics, and real database-backed lead capture (Connections)
+- Stage 6 status: implemented, tested, and ready for deployment
 - Current approved direction: centred full-width hero copy with a layered product preview rising into the lower part of the hero
 - Current font: Manrope
 - Current primary accent: cobalt blue; purple was explicitly rejected
@@ -181,17 +181,25 @@ The core product loop is now fully dynamic and wired to the database:
 - `app/pages/[slug].vue` dynamically fetches the user's live profile, generates an accurate `.vcf` file on the fly, and injects personalized SEO metadata.
 - Custom route middleware ensures a zero-flicker experience, automatically redirecting authenticated users from the marketing site to the dashboard.
 
+### Stage 6 (Growth & Engagement) — complete
+
+The application now supports full relationship-continuity features for individuals:
+- Expanded `EditProfileModal.vue` to capture Website, LinkedIn, X, and Instagram.
+- Added `qrcode.vue` to dynamically render a scannable QR code on the live profile page and the user dashboard.
+- Upgraded the visitor flow so the `ExchangeModal.vue` saves real leads directly into a new `connections` table in Supabase.
+- Implemented a `page_views` table to silently log analytics when the public profile is viewed.
+- Overhauled the authenticated `dashboard.vue` to display live Profile Views, an active Connections list, and a premium "Live" profile status.
+
 ### Not authorised yet
 
 Do not implement any of the following unless the user explicitly names and approves a new stage:
 
-- Edit Profile functionality in the dashboard
-- Social Links / Custom link fields (requires database schema migration)
-- QR Code generation
-- Analytics
+- Advanced Contact Management (Contact tags, meeting notes, follow-up reminders)
+- CSV export for captured leads
 - Team, event, or enterprise functionality
+- CRM integrations
 
-There is intentionally no assumed Stage 2. At the start of the next implementation session, ask for or follow the user's specific next-stage brief. Do not continue simply because a next section seems obvious.
+There is intentionally no assumed next Stage. At the start of the next implementation session, ask for or follow the user's specific next-stage brief. Do not continue simply because a next section seems obvious.
 
 ## 6. Current approved landing hero
 
