@@ -27,7 +27,7 @@ import { ArrowRight01Icon, Tick02Icon } from '@hugeicons/core-free-icons'
 
       <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
         <a
-          href="/maya"
+          href="/dennis-dev"
           class="group inline-flex w-full items-center justify-center gap-3 rounded-xl bg-brand-ink px-5 py-3.5 text-sm font-bold text-white shadow-card outline-none transition hover:-translate-y-0.5 hover:bg-brand-primary focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-4 focus-visible:ring-offset-brand-canvas sm:w-auto motion-reduce:transform-none motion-reduce:transition-none"
         >
           See Kohrah in action
