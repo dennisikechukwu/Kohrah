@@ -7,7 +7,7 @@ import { ArrowUpRight01Icon, Mail01Icon, Call02Icon, Globe02Icon, Add01Icon } fr
   <div class="w-full overflow-hidden rounded-[1.75rem] border border-brand-border bg-brand-surface shadow-product">
     <div class="relative h-40 overflow-hidden sm:h-44">
       <img
-        src="/images/dennis-profile.png"
+        src="/images/maya-chen-profile.jpg"
         alt=""
         width="720"
         height="720"
@@ -26,8 +26,8 @@ import { ArrowUpRight01Icon, Mail01Icon, Call02Icon, Globe02Icon, Add01Icon } fr
     <div class="p-5 sm:p-6">
       <div class="flex items-start justify-between gap-4">
         <div>
-          <p class="text-2xl font-bold tracking-[-0.035em] text-brand-ink">Dennis Ikechukwu</p>
-          <p class="mt-1 text-sm font-semibold text-brand-muted">Software Engineer · Winich Farms</p>
+          <p class="text-2xl font-bold tracking-[-0.035em] text-brand-ink">Maya Chen</p>
+          <p class="mt-1 text-sm font-semibold text-brand-muted">Product strategist · Independent</p>
         </div>
         <span class="mt-1 flex shrink-0 items-center gap-1.5 text-[0.65rem] font-bold text-brand-success">
           <span class="size-1.5 rounded-full bg-brand-success" />
@@ -36,7 +36,7 @@ import { ArrowUpRight01Icon, Mail01Icon, Call02Icon, Globe02Icon, Add01Icon } fr
       </div>
 
       <p class="mt-4 text-sm leading-6 text-brand-muted">
-        A software engineer working on scalable products.
+        Helping early-stage teams turn complex ideas into products people understand and use.
       </p>
 
       <div class="mt-5 grid grid-cols-3 overflow-hidden rounded-xl border border-brand-border bg-brand-canvas/60">

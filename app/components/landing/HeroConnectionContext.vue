@@ -19,9 +19,9 @@ import { Calendar01Icon } from '@hugeicons/core-free-icons'
     </div>
 
     <div class="mt-4 flex items-center gap-3 border-t border-brand-border pt-4">
-      <img src="/images/dennis-profile.png" alt="" width="720" height="720" class="size-10 rounded-full object-cover object-[center_35%]">
+      <img src="/images/maya-chen-profile.jpg" alt="" width="720" height="720" class="size-10 rounded-full object-cover object-[center_35%]">
       <div class="min-w-0">
-        <p class="truncate text-sm font-bold text-brand-ink">Dennis Ikechukwu</p>
+        <p class="truncate text-sm font-bold text-brand-ink">Maya Chen</p>
         <p class="truncate text-xs text-brand-muted">Met at a product meetup</p>
       </div>
     </div>
