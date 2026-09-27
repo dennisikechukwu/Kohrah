@@ -24,9 +24,15 @@ import { QrCode01Icon, Note01Icon, Calendar01Icon } from '@hugeicons/core-free-i
           <div class="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-2xl border border-brand-border bg-brand-surface shadow-sm">
             <div class="absolute inset-0 bg-brand-primary-soft/30" />
             <!-- Placeholder UI for "Share" -->
-            <div class="relative flex flex-col items-center gap-3 text-brand-muted/40">
-              <HugeiconsIcon :icon="QrCode01Icon" class="size-12" :stroke-width="1.5" />
-              <span class="text-[0.65rem] font-bold uppercase tracking-widest text-brand-muted/50">Placeholder: Share UI</span>
+            <div class="relative flex flex-col items-center justify-center">
+              <div class="rounded-2xl border border-brand-border bg-white p-3 shadow-sm transition-transform hover:scale-105">
+                <div class="grid size-20 place-items-center rounded-xl bg-brand-ink text-white">
+                  <HugeiconsIcon :icon="QrCode01Icon" class="size-12" :stroke-width="1.5" />
+                </div>
+              </div>
+              <div class="mt-4 flex items-center gap-2 rounded-full border border-brand-border bg-white px-3 py-1.5 text-[0.65rem] font-bold text-brand-ink shadow-sm">
+                kohrah.com/dennis-dev
+              </div>
             </div>
           </div>
           <div class="mt-6">
@@ -45,9 +51,18 @@ import { QrCode01Icon, Note01Icon, Calendar01Icon } from '@hugeicons/core-free-i
           <div class="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-2xl border border-brand-border bg-brand-surface shadow-sm">
             <div class="absolute inset-0 bg-brand-canvas/50" />
             <!-- Placeholder UI for "Context" -->
-            <div class="relative flex flex-col items-center gap-3 text-brand-muted/40">
-              <HugeiconsIcon :icon="Note01Icon" class="size-12" :stroke-width="1.5" />
-              <span class="text-[0.65rem] font-bold uppercase tracking-widest text-brand-muted/50">Placeholder: Context UI</span>
+            <div class="relative flex w-48 flex-col gap-2 rounded-2xl border border-brand-border bg-white p-3 shadow-sm transition-transform hover:scale-105">
+              <div class="flex items-center gap-2">
+                <div class="flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-primary/10 text-brand-primary">
+                  <HugeiconsIcon :icon="Note01Icon" class="size-3" :stroke-width="2" />
+                </div>
+                <span class="truncate text-[0.65rem] font-bold text-brand-ink">Product Meetup</span>
+              </div>
+              <div class="rounded-lg bg-brand-canvas/50 p-2">
+                <p class="text-[0.55rem] leading-relaxed text-brand-muted">
+                  Discussed the new design system. Let's connect about a potential role next quarter.
+                </p>
+              </div>
             </div>
           </div>
           <div class="mt-6">
@@ -66,9 +81,19 @@ import { QrCode01Icon, Note01Icon, Calendar01Icon } from '@hugeicons/core-free-i
           <div class="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-2xl border border-brand-border bg-brand-surface shadow-sm">
             <div class="absolute inset-0 bg-brand-primary-soft/20" />
             <!-- Placeholder UI for "Follow Up" -->
-            <div class="relative flex flex-col items-center gap-3 text-brand-muted/40">
-              <HugeiconsIcon :icon="Calendar01Icon" class="size-12" :stroke-width="1.5" />
-              <span class="text-[0.65rem] font-bold uppercase tracking-widest text-brand-muted/50">Placeholder: Follow-up UI</span>
+            <div class="relative flex w-48 flex-col gap-3 rounded-2xl border border-brand-border bg-white p-3 shadow-sm transition-transform hover:scale-105">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <div class="flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-success/10 text-brand-success">
+                    <HugeiconsIcon :icon="Calendar01Icon" class="size-3" :stroke-width="2" />
+                  </div>
+                  <span class="text-[0.65rem] font-bold text-brand-ink">Follow up</span>
+                </div>
+                <span class="text-[0.55rem] font-bold uppercase text-brand-muted">In 2 days</span>
+              </div>
+              <div class="h-1.5 w-full overflow-hidden rounded-full bg-brand-canvas">
+                <div class="h-full w-2/3 rounded-full bg-brand-success"></div>
+              </div>
             </div>
           </div>
           <div class="mt-6">
