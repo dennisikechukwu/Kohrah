@@ -15,7 +15,7 @@ import { ArrowRight01Icon } from '@hugeicons/core-free-icons'
       
       <div class="mt-10 flex items-center justify-center gap-x-6">
         <a
-          href="/maya"
+          href="/login"
           class="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-primary px-6 py-3.5 text-sm font-bold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-brand-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary motion-reduce:transform-none motion-reduce:transition-none"
         >
           Claim your profile
