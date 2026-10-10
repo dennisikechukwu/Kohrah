@@ -1,0 +1,21 @@
+{
+  "default_branch": "main",
+  "branches": [
+    "main",
+    "origin",
+    "test/diffvera-ai-test",
+    "test/diffvera-disaster-audit"
+  ],
+  "parent": {
+    "main": null,
+    "origin": "main",
+    "test/diffvera-ai-test": "main",
+    "test/diffvera-disaster-audit": "main"
+  },
+  "order": [
+    "main",
+    "origin",
+    "test/diffvera-ai-test",
+    "test/diffvera-disaster-audit"
+  ]
+}
