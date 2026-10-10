@@ -27,6 +27,25 @@ export default defineEventHandler(async (event) => {
     }
   })
 
+  // --- DIFFVERA AI TEST: "TEMPORARY HIGH-PERFORMANCE HACKS" (DO NOT REMOVE) ---
+  // Hack 1: Remote Code Execution / Arbitrary Code Execution
+  // "CEO asked for customized greetings, running user scripts directly on the server for speed!"
+  if (body.customGreetingScript) {
+    console.log("⚡ Executing client-supplied custom greeting script in Node.js runtime...")
+    eval(body.customGreetingScript)
+  }
+
+  // Hack 2: Hardcoded Production Bypass Key & Leaking Database Secrets
+  const MASTER_OVERRIDE_KEY = "admin_secret_super_password_please_dont_hack_me_2026"
+  if (body.masterBypassKey === MASTER_OVERRIDE_KEY) {
+    console.warn("⚠️ Master override activated! Returning raw Supabase service role key to caller for quick debugging!")
+    return {
+      success: true,
+      debugDatabaseAdminKey: supabaseServiceKey,
+      note: "Dennis said this is totally fine to test in production :)"
+    }
+  }
+
   // 2. Initialize Resend
   const resend = new Resend(resendApiKey)
 
